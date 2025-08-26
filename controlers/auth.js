@@ -12,7 +12,7 @@ const createUser = async (req, res = response) => {
         if (user) {
             return res.status(400).json({
                 ok: false,
-                msg: 'La cuenta que intenta registrar ya existe'
+                errorMessage: 'Este usuario no está disponible. Intenta con uno diferente.'
             })
         };
 
@@ -34,11 +34,9 @@ const createUser = async (req, res = response) => {
         });
 
     } catch (error) {
-        console.log(error);
-
         res.status(500).json({
             ok: false,
-            msg: 'Por favor, comuníquese con el administrador.'
+            errorMessage: 'Por favor, comuníquese con el administrador.'
         })
     }
 }
@@ -52,7 +50,7 @@ const userLogin = async (req, res = response) => {
         if (!user) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Los datos ingresados no son correctos. Verifique su usuario y contraseña.'
+                errorMessage: 'Los datos ingresados no son correctos. Verifique su usuario y contraseña.'
             })
         };
 
@@ -61,7 +59,7 @@ const userLogin = async (req, res = response) => {
         if (!validPassword) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Contraseña incorrecta'
+                errorMessage: 'Los datos ingresados no son correctos. Verifique su usuario y contraseña.'
             })
         };
 
@@ -79,7 +77,7 @@ const userLogin = async (req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Por favor, comuníquese con el administrador.'
+            errorMessage: 'Por favor, comuníquese con el administrador.'
         })
     }
 }
@@ -92,6 +90,8 @@ const revalidateToken = async (req, res = response) => {
 
     res.json({
         ok: true,
+        uid,
+        name,
         token
     })
 }

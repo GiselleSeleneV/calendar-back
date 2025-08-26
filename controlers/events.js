@@ -30,7 +30,7 @@ const createEvent = async (req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Por favor, comuníquese con el administrador.'
+            errorMessage: 'Por favor, comuníquese con el administrador.'
         })
     }
 };
@@ -46,14 +46,14 @@ const updateEvent = async (req, res = response) => {
         if (!event) {
             return res.status(404).json({
                 ok: false,
-                msg: 'El evento con el ID especificado no fue encontrado.'
+                errorMessage: 'El evento con el ID especificado no fue encontrado.'
             });
         };
 
         if (event.user.toString() !== uid) {
             return res.status(401).json({
                 ok: false,
-                msg: 'No cuenta con permisos para editar este evento.'
+                errorMessage: 'No cuenta con permisos para editar este evento.'
             })
         };
 
@@ -74,7 +74,7 @@ const updateEvent = async (req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Por favor, comuníquese con el administrador.'
+            errorMessage: 'Por favor, comuníquese con el administrador.'
         })
     }
 };
@@ -90,14 +90,14 @@ const deleteEvent = async (req, res = response) => {
         if (!event) {
             return res.status(404).json({
                 ok: false,
-                msg: 'El evento con el ID especificado no fue encontrado.'
+                errorMessage: 'El evento con el ID especificado no fue encontrado.'
             });
         };
 
         if (event.user.toString() !== uid) {
             return res.status(401).json({
                 ok: false,
-                msg: 'No cuenta con permisos para editar este evento.'
+                errorMessage: 'No cuenta con permisos para editar este evento.'
             })
         };
 
@@ -112,7 +112,7 @@ const deleteEvent = async (req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Por favor, comuníquese con el administrador.'
+            errorMessage: 'Por favor, comuníquese con el administrador.'
         })
     }
 }
