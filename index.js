@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const { dbConection } = require('./database/config');
 require('dotenv').config();
@@ -17,6 +19,10 @@ app.use(express.json());
 
 app.use('/api/auth', require('./rutes/auth')); //autenticacion
 app.use('/api/events', require('./rutes/events')); //eventos del calendario
+
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`Servidor corriendo en puerto ${process.env.PORT}`)
